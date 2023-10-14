@@ -16,7 +16,7 @@ public class PlayerIdleState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.N))
+        if (XInput != 0)
         {
             StateMachine.ChangeState(Player.MoveState);
         }
