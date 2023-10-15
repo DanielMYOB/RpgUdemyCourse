@@ -10,6 +10,22 @@ public class Player : MonoBehaviour
 
     public float jumpForce = 12;
 
+    [Header("Collision Info")]
+    [SerializeField]
+    private Transform groundCheck;
+
+    [SerializeField]
+    private float groundCheckDistance;
+
+    [SerializeField]
+    private Transform wallCheck;
+
+    [SerializeField]
+    private float wallCheckDistance;
+
+    [SerializeField]
+    private LayerMask whatIsGround;
+
     #region Components
     public Animator Anim { get; private set; }
     public Rigidbody2D Rb { get; private set; }
@@ -48,5 +64,22 @@ public class Player : MonoBehaviour
     public void SetVelocity(float xVelocity, float yVelocity)
     {
         Rb.velocity = new Vector2(xVelocity, yVelocity);
+    }
+
+    public bool IsGroundDetected() =>
+        Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+
+    private void OnDrawGizmos()
+    {
+        var groundCheckPosition = groundCheck.position;
+        var wallCheckPosition = wallCheck.position;
+        Gizmos.DrawLine(
+            groundCheckPosition,
+            new Vector3(groundCheckPosition.x, groundCheckPosition.y - groundCheckDistance)
+        );
+        Gizmos.DrawLine(
+            wallCheckPosition,
+            new Vector3(wallCheckPosition.x + wallCheckDistance, wallCheckPosition.y)
+        );
     }
 }
