@@ -10,6 +10,7 @@ public class PlayerState
 
     protected float XInput;
     private readonly string _animBoolName;
+    private static readonly int YVelocity = Animator.StringToHash("yVelocity");
 
     public PlayerState(Player player, PlayerStateMachine stateMachine, string animBoolName)
     {
@@ -27,6 +28,7 @@ public class PlayerState
     public virtual void Update()
     {
         XInput = Input.GetAxisRaw("Horizontal");
+        Player.Anim.SetFloat(YVelocity, Rb.velocity.y);
     }
 
     public virtual void Exit()

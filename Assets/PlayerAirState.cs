@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : PlayerGroundedState
+public class PlayerAirState : PlayerState
 {
-    public PlayerMoveState(Player player, PlayerStateMachine stateMachine, string animBoolName)
+    public PlayerAirState(Player player, PlayerStateMachine stateMachine, string animBoolName)
         : base(player, stateMachine, animBoolName) { }
 
     public override void Enter()
@@ -16,9 +16,7 @@ public class PlayerMoveState : PlayerGroundedState
     {
         base.Update();
 
-        Player.SetVelocity(XInput * Player.moveSpeed, Rb.velocity.y);
-
-        if (XInput == 0)
+        if (Rb.velocity.y == 0)
         {
             StateMachine.ChangeState(Player.IdleState);
         }

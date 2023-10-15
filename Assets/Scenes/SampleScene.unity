@@ -613,6 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
+  jumpForce: 12
 --- !u!4 &1153069411
 Transform:
   m_ObjectHideFlags: 0
@@ -826,7 +827,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1153069411}
   - {fileID: 1853971977}
   - {fileID: 167122793}
   - {fileID: 986158447}
+  - {fileID: 1153069411}

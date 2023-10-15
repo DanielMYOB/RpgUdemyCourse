@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : PlayerGroundedState
+public class PlayerGroundedState : PlayerState
 {
-    public PlayerMoveState(Player player, PlayerStateMachine stateMachine, string animBoolName)
+    public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, string animBoolName)
         : base(player, stateMachine, animBoolName) { }
 
     public override void Enter()
@@ -16,11 +16,9 @@ public class PlayerMoveState : PlayerGroundedState
     {
         base.Update();
 
-        Player.SetVelocity(XInput * Player.moveSpeed, Rb.velocity.y);
-
-        if (XInput == 0)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            StateMachine.ChangeState(Player.IdleState);
+            StateMachine.ChangeState(Player.JumpState);
         }
     }
 
